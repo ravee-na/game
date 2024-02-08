@@ -1,0 +1,226 @@
+<html>
+<head>
+<title>game</title>
+<style>
+
+/* Part 1 */
+		th.p1{
+			padding: 10px;
+			background-color: #BFDCF1;
+			}
+			
+		td.p1{
+			padding: 10px; 
+		}
+
+	.numberStyle{
+		padding:10px;
+	}
+
+
+</style>
+
+<script>
+
+var myInterval;
+
+function startRandom(){
+myInterval = setInterval(getRandom, 2000);
+document.getElementById("score").innerHTML = "0";
+document.getElementById("stopButton").disabled = false;
+document.getElementById("startButton").disabled = true;
+var selected = document.getElementById ("number").value;
+document.getElementById("choosen").innerHTML = selected;
+
+}
+
+function getRandom()
+{
+	document.getElementById("number").disabled = true;
+	var a = Math.floor(Math.random() * 10);
+	var b = Math.floor(Math.random() * 10);
+	var c = Math.floor(Math.random() * 10);
+	
+	for (let i = 0; i < 3; i++){
+	if (a == b){
+		a = Math.floor(Math.random() * 10);
+	}
+	
+	else if (b == c){
+		b = Math.floor(Math.random() * 10);
+	}
+	
+	else if (a == c){
+		c = Math.floor(Math.random() * 10);
+	}
+	}
+	
+	document.getElementById("no1").innerHTML = a;
+	document.getElementById("no2").innerHTML = b;
+	document.getElementById("no3").innerHTML = c;
+	
+}
+
+function stopRandom(){
+	document.getElementById("startButton").disabled = false;
+	document.getElementById("stopButton").disabled = true;
+	document.getElementById("number").disabled = false;
+	clearInterval (myInterval);
+}
+
+function check1(){
+	
+	/*
+	var val = document.getElementById("score").innerHTML;
+    var score1 = parseInt(val);
+	
+	var selected = document.getElementById ("number").value;
+	var click1 = document.getElementById ("no1").innerHTML; */
+	
+	
+	var score1 = Number(document.getElementById("score").innerHTML);
+	var selected = Number(document.getElementById ("number").value);
+	var click1 = Number(document.getElementById ("no1").innerHTML);
+	
+	if (click1 == selected){
+		score1 += 4;
+		document.getElementById("score").innerHTML = score1;
+	}
+	else {
+		score1 -= 3;
+		document.getElementById("score").innerHTML = score1;
+	}
+}
+
+function check2(){
+	
+	/*
+	var val2 = document.getElementById("score").innerHTML;
+    var score2 = parseInt(val2);
+	
+	var selected = document.getElementById ("number").value;
+	var click2 = document.getElementById ("no2").innerHTML ; */
+	
+	var score2 = Number(document.getElementById("score").innerHTML);
+	var selected = Number(document.getElementById ("number").value);
+	var click2 = Number(document.getElementById ("no2").innerHTML);
+	
+
+	if (click2 == selected){
+		score2 += 4;
+		document.getElementById("score").innerHTML = score2;
+	}
+	else {
+		score2 -= 3;
+		document.getElementById("score").innerHTML = score2;
+	}
+
+}
+
+function check3(){
+	/*
+	var val3 = document.getElementById("score").innerHTML;
+    var score3 = parseInt(val3);
+	
+	var selected = document.getElementById ("number").value ;
+	var click3 = document.getElementById ("no3").innerHTML ; */
+	
+	var score3 = Number(document.getElementById("score").innerHTML);
+	var selected = Number(document.getElementById ("number").value);
+	var click3 = Number(document.getElementById ("no3").innerHTML);
+	
+	if (click3 == selected){
+		score3 += 4;
+		document.getElementById("score").innerHTML = score3;
+	}
+	else {
+		score3 -= 3;
+		document.getElementById("score").innerHTML = score3;
+	}
+
+}
+</script>
+</head>
+
+<body>
+
+<!-- Part 1 -->
+		<h1>Part 1: </h1>
+		
+		<table border="1" width="100%">
+		
+			<!-- Heading -->
+			<tr>
+				<th class = "p1" colspan = "3"> CSIT128: Assignment 2 </th>
+				<th class = "p1"> Group T1G09 </th>
+			</tr>
+			
+			<!-- Row 1 -->
+			<tr>
+				<td class = "p1"rowspan="3" >Student Number / <br/> Name / Email</td>
+				<td class = "p1">7357205</td> 
+				<td class = "p1">Raveena Ravishankar</td>
+				<td class = "p1">ravishan003@mymail.sim.edu.sg</td>
+			</tr>
+			
+			<!-- Row 2 -->
+			<tr>
+				<td class = "p1">7262930</td> 
+				<td class = "p1">Sundarrajan Prethika</td>
+				<td class = "p1">sundarra002@mymail.sim.edu.sg</td>
+			</tr>
+			
+			<!-- Row 3 -->
+			<tr style="height:45px">
+				<td class = "p1"></td>
+				<td class = "p1"></td>
+				<td class = "p1"></td>
+			</tr>
+			
+		</table>
+		
+		<br/><br/><br/><br/>
+		
+<table border = "1" width="50%" style="border-collapse: collapse; margin-left: auto; margin-right: auto;">
+	<tr>
+		<th style="padding: 15px; background-color: #F3C6A0;font-weight: bold;font-size:30px;" colspan="3">
+			Part 2: Game
+		</th>
+	</tr>
+	<tr>
+		<td width="30%" style="padding: 10px;background-color: #D1E5F5;font-weight: bold;"> Your chosen number: <span id="choosen"></span></td>
+		<td width="30%" align="center" style="background-color: #D1E5F5;"> 
+		<form>
+			<select id="number">
+				<option value="0">0</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+			</select>
+			</form>
+		</td>
+		<td width="30%" style="padding: 10px; background-color: #F3E6C1;font-weight: bold;">Current Score: <span id="score" style= "color: red;font-size: 25px;">0</span></td>
+	</tr>
+	<tr>
+		<td colspan="3" style="background-color: #A7E492;">
+			<input id="startButton" type="button" onclick="startRandom();"style = "padding: 0px 15px; margin: 2px 120px 2px 120px;" value="Start">
+		    <input id="stopButton" type="button" onclick="stopRandom();" style = "padding: 0px 15px; margin: 2px 120px 2px 120px;" value="Stop" disabled>
+		</td>
+	</tr>
+
+	<tr class = "numberStyle" style = "height: 100px;text-align:center;">
+		<td onclick="check1()"> <span id="no1" style = "font-size: 30px;color:#DCDA6F"></span> </td>
+		<td onclick="check2()"> <span id="no2" style = "font-size: 30px;color:blue"></span> </td>
+		<td onclick="check3()"> <span id="no3" style = "font-size: 30px;color:green"></span> </td>
+	</tr>
+	
+</table>
+</body>
+
+</html
